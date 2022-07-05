@@ -17,8 +17,12 @@ array_third = [5]
 puts "The third array and its sum: "
 puts sum(array_third)
 
-'''
-array_forth = [1, "sample", 42]
-puts "The forth array and its sum: "
+array_forth = [4.33, 5.77, 1.01]
+puts "The third array and its sum: "
 puts sum(array_forth)
+
+'''
+array_fifth = [1, "sample", 42]
+puts "The forth array and its sum: "
+puts sum(array_fifth)
 '''
