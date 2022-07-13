@@ -26,8 +26,7 @@
 def bitter_sum_row(num)
   s = 0
   s.upto(num) { |i| s = s | i }
-  print "Total sum is: "
-  print s
+  print "Total sum is: ", s
 end
 
 def delete_dash(m_str)
@@ -43,7 +42,6 @@ def delete_dash(m_str)
     buf = stack.pop
     if buf == "#"
       count_dash += 1
-      #stack.pop
     else
       while count_dash > 0
         buf = stack.pop
