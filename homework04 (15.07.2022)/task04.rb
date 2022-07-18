@@ -22,10 +22,7 @@ end
 
 class Hash
   def with_indifferent_access #: return HashWithIndifferentAccess
-    buf = HashWithIndifferentAccess[self]
-    self.each { |k, v| buf[k] = v}
-    buf #: return HashWithIndifferentAccess
-    #HashWithIndifferentAccess.new(self)
+    HashWithIndifferentAccess[self]
   end
 end
 
