@@ -35,7 +35,7 @@ class LinkedList
 
   def find(data)
     node = @head
-    return false unless node.next_node
+    return nil unless node.next_node
     return node if node.data == data
 
     while (node = node.next_node) # если следующий - nil, то
