@@ -25,45 +25,45 @@ puts "The second task"
 
 helper_one = PaginationHelper.new(['a','b','c','d','e','f'], 4)
 puts "\nThe first example: #{helper_one}"
-helper_one.page_count # 2
-helper_one.item_count # 6
-helper_one.page_item_count(0)  # 4, т.к нумерация страниц с 0
-helper_one.page_item_count(1) # 2, последняя страница содержит 2 элемента
-helper_one.page_item_count(2) # -1
+puts helper_one.page_count # 2
+puts helper_one.item_count # 6
+puts helper_one.page_item_count(0)  # 4, т.к нумерация страниц с 0
+puts helper_one.page_item_count(1) # 2, последняя страница содержит 2 элемента
+puts helper_one.page_item_count(2) # -1
 #
 # # page_index принимает индекс элемента и возвращает страницу, на которой этот элемент находится
 #
-helper_one.page_index(5) # 1
-helper_one.page_index(2) # 0
-helper_one.page_index(20) # -1
-helper_one.page_index(-10) # -1
+puts helper_one.page_index(5) # 1
+puts helper_one.page_index(2) # 0
+puts helper_one.page_index(20) # -1
+puts helper_one.page_index(-10) # -1
 
 helper_two = PaginationHelper.new(['a','b','c','d','e','f', 'g', 'h', 'i'], 2)
 puts "\nThe second example: #{helper_two}"
-helper_two.page_count # 5
-helper_two.item_count # 9
-helper_two.page_item_count(0)  # 2
-helper_two.page_item_count(1) # 2
-helper_two.page_item_count(4) # 1
+puts helper_two.page_count # 5
+puts helper_two.item_count # 9
+puts helper_two.page_item_count(0)  # 2
+puts helper_two.page_item_count(1) # 2
+puts helper_two.page_item_count(4) # 1
 #
 # # page_index принимает индекс элемента и возвращает страницу, на которой этот элемент находится
 #
-helper_two.page_index(5) # 2
-helper_two.page_index(2) # 1
-helper_two.page_index(20) # -1
-helper_two.page_index(-10) # -1
+puts helper_two.page_index(5) # 2
+puts helper_two.page_index(2) # 1
+puts helper_two.page_index(20) # -1
+puts helper_two.page_index(-10) # -1
 
 helper_three = PaginationHelper.new(['a','b','c','d','e','f', 'g', 'h', 'i'], -3)
 puts "\nThe third example: #{helper_three}"
-helper_three.page_count # -3
-helper_three.item_count # 9
-helper_three.page_item_count(0)  # -1
-helper_three.page_item_count(2) # -1
-helper_three.page_item_count(-3) # -1
+puts helper_three.page_count # -3
+puts helper_three.item_count # 9
+puts helper_three.page_item_count(0)  # -1
+puts helper_three.page_item_count(2) # -1
+puts helper_three.page_item_count(-3) # -1
 #
 # # page_index принимает индекс элемента и возвращает страницу, на которой этот элемент находится
 #
-helper_three.page_index(0) # 0
-helper_three.page_index(7) # -3
-helper_three.page_index(11) # -1
-helper_three.page_index(-10) # -1
+puts helper_three.page_index(0) # 0
+puts helper_three.page_index(7) # -3
+puts helper_three.page_index(11) # -1
+puts helper_three.page_index(-10) # -1
