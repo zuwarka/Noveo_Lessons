@@ -27,7 +27,7 @@ class LinkedList
     @head = nil
   end
 
-  def find_tail
+  private def find_tail
     node = @head
     return node unless node.next_node
     return node unless node.next_node while (node = node.next_node)
@@ -43,7 +43,7 @@ class LinkedList
     end
   end
 
-  def find_before(data)
+  private def find_before(data)
     node = @head
     return false unless node.next_node
     return node if node.next_node.data == data
