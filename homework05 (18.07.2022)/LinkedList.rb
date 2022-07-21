@@ -23,8 +23,6 @@
 require_relative 'Node'
 
 class LinkedList
-  #attr_accessor :head, :size, :tail
-
   def initialize
     @head = nil
   end
@@ -40,8 +38,8 @@ class LinkedList
     return false unless node.next_node
     return node if node.data == data
 
-    while (node = node.next_node)
-      return node if node.data == data
+    while (node = node.next_node) # если следующий - nil, то
+      return node if node.data == data # вернет nil, если не найдет значения в списке, так как node сейчас nil
     end
   end
 
