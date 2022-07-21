@@ -18,47 +18,41 @@
 # helper.page_index(-10) # -1
 
 class PaginationHelper
-  attr_accessor :m_array, :item_on_page
-
   def initialize(m_array, item_on_page)
     @m_array = m_array
     @item_on_page = item_on_page
   end
 
   def page_count
-    puts "There are #{(@m_array.length.to_f / @item_on_page.to_f).ceil} pages"
+    (@m_array.length.to_f / @item_on_page.to_f).ceil
   end
 
   def item_count
-    puts "There are #{@m_array.length} items"
-  end
-
-  def page_count_for_class
-    return (@m_array.length.to_f / @item_on_page.to_f).ceil
+    @m_array.length
   end
 
   def page_item_count(page_number)
-    if (page_number < page_count_for_class) && (page_number >= 0)
-      if page_number == page_count_for_class - 1
-        puts "There are #{@m_array.length - ((@m_array.length / item_on_page).floor * item_on_page)} on the page"
+    if (page_number < page_count) && (page_number >= 0)
+      if page_number == page_count - 1
+        @m_array.length - ((@m_array.length / @item_on_page).floor * @item_on_page)
       else
-        puts "There are #{@item_on_page} on the page"
+        @item_on_page
       end
     else
-      puts "No such page number, -1"
+      -1
     end
   end
 
   def page_index(item_index)
     index = @m_array.length - item_index
-    if index <= 0
-      puts "No such index, -1"
+    if item_index < 0 || index < 0
+      -1
     else
-      puts "This element for that index stays on the #{(item_index / item_on_page).to_i} page"
+      (item_index / @item_on_page).to_i
     end
   end
 
   def to_s
-    "#{@m_array}"
+    @m_array.to_s
   end
 end
