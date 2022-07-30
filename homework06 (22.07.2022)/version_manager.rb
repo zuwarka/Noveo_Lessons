@@ -34,9 +34,9 @@ class VersionManager
   def initialize(m_version = "0.0.1")
     VersionValidator.new(m_version).check_integer
     @prev_version = m_version
-    @major = m_version.split(/[.]/)[0].to_i
-    @minor = m_version.split(/[.]/)[1].to_i
-    @patch = m_version.split(/[.]/)[2].to_i
+    @major = @prev_version.split('.')[0].to_i
+    @minor = @prev_version.split('.')[1].to_i
+    @patch = @prev_version.split('.')[2].to_i
   end
 
   def major!
