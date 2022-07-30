@@ -24,49 +24,16 @@ class BinaryTree
     if iter == nil
       @root = Node.new(value)
     else
-      root.add(value)
+      root.add_node(value)
     end
   end
 
-  def find(value, node = self.root)
-    unless value.is_a?(Integer)
-      raise 'Invalid value'
-    end
-
-    return if node.nil?
-    if node.value < value
-      return find(value, node.right)
-    elsif node.value > value
-      return find(value, node.left)
-    else
-      return node
-    end
+  def find(value)
+    root.find_node(value, root)
   end
 
-  def delete(value, node = self.root)
-    unless value.is_a?(Integer)
-      raise 'Invalid value'
-    end
-
-    return if node.nil?
-    if node.value < value
-      node.right = delete(value, node.right)
-    elsif node.value > value
-      node.left = delete(value, node.left)
-    else
-      if node.left != nil && node.right != nil
-        min_of_right_subtree = find_min(node.right)
-        node.value = min_of_right_subtree.value
-        node.right = delete(min_of_right_subtree.value, node.right)
-      elsif node.left != nil
-        node = node.left
-      elsif node.right != nil
-        node = node.right
-      else
-        node = nil
-      end
-    end
-    return node
+  def delete(value)
+    root.delete_node(value, root)
   end
 
   def to_s(node = self.root)
@@ -77,15 +44,5 @@ class BinaryTree
       to_s(node.right)
       print ")"
     end
-  end
-
-  private
-  def find_min(node = self.root)
-    if node == nil
-      return nil
-    elsif node.left == nil
-      return node
-    end
-    return find_min(node.left)
   end
 end
