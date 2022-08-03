@@ -11,7 +11,10 @@
 
 module Triable
   def try
-    yield self if block_given?
+    begin
+      block_given? ? yield(self) : self
     rescue NoMethodError
+      nil
+    end
   end
 end
