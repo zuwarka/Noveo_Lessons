@@ -3,5 +3,5 @@
 # который можно использовать для добавления переданного числа к другим числовым значениям.
 
 def add_num(num)
-  proc {|element| element + num}
+  proc { |element| element + num }
 end
