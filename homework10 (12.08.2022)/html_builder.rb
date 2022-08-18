@@ -1,7 +1,6 @@
 class HtmlBuilder
   def initialize(&block)
     @result = ""
-    @space = 2
     block.call(self) if block_given?
   end
 
@@ -9,34 +8,24 @@ class HtmlBuilder
     @result != "" ? @result = "<html>\n#{@result}</html>" : @result
   end
 
-  def body(&block)
-    @result += " " * @space + "<body>" + "\n"
-    block.call(self)
-    @result += " " * @space + "</body>" + "\n"
-  end
-
   private
 
   def method_missing(method_name, *args, class_name: nil, &block)
-    @result += "  " * @space + "<#{method_name}"
+    @result += "<#{method_name}"
 
-    unless class_name.nil?
-      @result += " class=\"#{class_name}\""
-    end
+    @result += " class=\"#{class_name}\"" unless class_name.nil?
 
-    if args.empty? and !block_given?
+    if args.empty? && !block_given?
       @result += "/>"
     else
       @result += ">#{args.first}"
     end
 
     if block_given?
-      @space -= 2
       block.call(self)
-      @space += 2
     end
 
-    if !args.empty? or block_given?
+    if !args.empty? || block_given?
       @result += "</#{method_name}>"
     end
     @result += "\n"
