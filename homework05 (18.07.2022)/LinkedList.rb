@@ -23,8 +23,8 @@
 require_relative 'Node'
 
 class LinkedList
-  def initialize
-    @head = nil
+  def initialize(new_head = nil)
+    @head = new_head
   end
 
   def find(data)
@@ -78,14 +78,15 @@ class LinkedList
     return unless node
     return node unless node.next_node
 
-    to_s(node.reverse_node)
+    buf = LinkedList.new(node.reverse_node)
+    buf
   end
 
   def reverse!
     return unless @head
     return @head unless @head.next_node
 
-    to_s(@head.reverse_node!)
+    @head.reverse_node!
   end
     
   private
