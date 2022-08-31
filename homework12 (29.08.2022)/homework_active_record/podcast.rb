@@ -12,4 +12,5 @@ class Podcast < ActiveRecord::Base
   enum type: [ :society, :news, :sport, :business, :culture ]
 
   has_many :subscriptions, as: :subscribable
+  has_many :users, through: :subscription
 end
