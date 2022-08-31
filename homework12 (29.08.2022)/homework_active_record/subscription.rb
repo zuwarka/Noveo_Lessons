@@ -11,5 +11,4 @@ ActiveRecord::Base.establish_connection(
 class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :subscribable, polymorphic: true
-  has_many :users
 end
