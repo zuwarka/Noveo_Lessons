@@ -12,4 +12,5 @@ class Newspaper < ActiveRecord::Base
   enum type: [ :news, :policy, :sport, :science, :university ]
 
   has_many :subscriptions, as: :subscribable
+  has_many :users, through: :subscription
 end
