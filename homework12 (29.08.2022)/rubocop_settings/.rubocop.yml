@@ -1,0 +1,16 @@
+AllCops:
+ Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - Gemfile
+
+ Style/Documentation:
+   Enabled: false
+
+ Layout/LineLength:
+   Max: 99
+# other configuration
+# ...
