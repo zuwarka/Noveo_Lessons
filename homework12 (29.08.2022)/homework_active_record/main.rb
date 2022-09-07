@@ -1,16 +1,27 @@
-# Используя 'active_record' гем, без создания самого рейлс приложения,
-# реализовать 4 модели с соответствующими таблицами:
-# - User. Атрибуты: username (уникальный и не может быть пустым);
-# - Podcast. Атрибуты: name (уникальный и не может быть пустым),
-# type (жанр подкаста, можно придумать несколько доступных жанров,
-# плюсом будет использовать для них enum в модели);
-# - Newspaper. Атрибуты: name (уникальный и не может быть пустым),
-# type (тематика газеты, то есть тоже придумать несколько типов, используя enum метод в модели);
-# - Subscription. Связующая таблица между пользователями и газетами/подскастами.
-# Определяющая подписки пользователей. Особенность реалиции заключается в том,
-# что с таблицами podcasts, newspapers должна быть связана полиморфной связью.
-# На уровне модели будет иметь два belongs_to:
-# belongs_to :user, belongs_to :subscribable, polymorphic: true
-# Use postgreSQL
+# frozen_string_literal: true
 
+require 'active_record'
+require_relative 'user'
+require_relative 'podcast'
+require_relative 'newspaper'
+require_relative 'subscription'
 
+User.destroy_all
+User.create!(username: 'Suleiman')
+User.create!(username: 'Selim')
+
+Podcast.destroy_all
+Podcast.create!(name: 'Cumhuriyet', type: culture)
+Podcast.create!(name: 'Better call Saul', type: news)
+
+Newspaper.destroy_all
+Newspaper.create!(name: 'Iskra', type: policy)
+Newspaper.create!(name: 'The Washington Post', type: news)
+
+Subscription.destroy_all
+Subscription.create!(user: User.first, subscribable: Podcast.first)
+Subscription.create!(user: User.second, subscribable: Newspaper.first)
+
+p User.first.as_json
+p Subscription.first.as_json
+p Subscription.second.as_json
