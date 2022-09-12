@@ -79,3 +79,4 @@ GROUP BY authors.first_name, authors.last_name, authors.age;
 -- Delete table
 DROP TABLE books;
 DROP TABLE authors;
+DROP DATABASE IF EXISTS homework_db;
