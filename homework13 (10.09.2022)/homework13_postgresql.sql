@@ -1,19 +1,19 @@
 CREATE TABLE authors
-{
+(
 	id SERIAL PRIMARY KEY,
 	first_name CHARACTER VARYING(50) NOT NULL,
 	last_name CHARACTER VARYING(50) NOT NULL,
 	age INTEGER NOT NULL
-};
+);
 
 CREATE TABLE books
-{
+(
 	id SERIAL PRIMARY KEY,
 	title CHARACTER VARYING(50) NOT NULL,
 	author_id INTEGER NOT NULL,
 	copies_sold INTEGER NOT NULL,
 	FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
-};
+);
 
 -- Adding data in tables
 INSERT INTO authors(first_name, last_name, age) VALUES('mark', 'twain', 74);
@@ -57,10 +57,10 @@ INSERT INTO books(title, author_id, copies_sold) VALUES('the seagull', 6, 33);
 -- Choose authors who has first_name > 6 symbols
 SELECT authors.first_name
 FROM authors
-WHERE length(authors.first_name) > 6
+WHERE length(authors.first_name) > 6;
 
 -- Count numbers of authors for theirs age
-SELECT authors.age, COUNT(age) as authors_count
+SELECT age, COUNT(age) as authors_count
 FROM authors
 GROUP BY age;
 
@@ -68,13 +68,13 @@ GROUP BY age;
 SELECT *
 FROM books
 ORDER BY copies_sold DESC
-LIMIT 3
+LIMIT 3;
 
 -- About authors plus count of theirs books
-SELECT *, COUNT(books.id) as books_count
+SELECT authors.first_name, authors.last_name, authors.age, COUNT(books.id) as books_count
 FROM authors INNER JOIN books
 ON authors.id = books.author_id
-
+GROUP BY authors.first_name, authors.last_name, authors.age;
 
 -- Delete table
 DROP TABLE books;
