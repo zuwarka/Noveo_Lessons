@@ -13,13 +13,13 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, dependent: :destroy
 
-  before_update :update_subscriptions
+  after_update :update_subscriptions
 
   private
 
   def update_subscriptions
     return if active
-    Subscription.each { |subscription| subscription.disabled! if subscription.user_id == id }
+    subscriptions.each { |subscription| subscription.disabled! if subscription.user_id == id }
   end
 end
 
