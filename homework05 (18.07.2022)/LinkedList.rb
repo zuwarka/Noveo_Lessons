@@ -23,14 +23,8 @@
 require_relative 'Node'
 
 class LinkedList
-  def initialize
-    @head = nil
-  end
-
-  private def find_tail
-    node = @head
-    return node unless node.next_node
-    return node unless node.next_node while (node = node.next_node)
+  def initialize(new_head = nil)
+    @head = new_head
   end
 
   def find(data)
@@ -41,16 +35,6 @@ class LinkedList
 
     while (node = node.next_node) # если следующий - nil, то
       return node if node.data == data # вернет nil, если не найдет значения в списке, так как node сейчас nil
-    end
-  end
-
-  private def find_before(data)
-    node = @head
-    return false unless node.next_node
-    return node if node.next_node.data == data
-
-    while (node = node.next_node)
-      return node if node.next_node && node.next_node.data == data
     end
   end
 
@@ -88,5 +72,38 @@ class LinkedList
       print ", ", node.data
     end
     print ")"
+  end
+      # -------------------------------------------------- Добавлено от 12.08.22
+  def reverse(node = @head, previous = nil)
+    return unless node
+    return node unless node.next_node
+
+    buf = LinkedList.new(node.reverse_node)
+    buf
+  end
+
+  def reverse!
+    return unless @head
+    return @head unless @head.next_node
+
+    @head.reverse_node!
+  end
+    
+  private
+
+  def find_before(data)
+    node = @head
+    return false unless node.next_node
+    return node if node.next_node.data == data
+
+    while (node = node.next_node)
+      return node if node.next_node && node.next_node.data == data
+    end
+  end
+
+  def find_tail
+    node = @head
+    return node unless node.next_node
+    return node unless node.next_node while (node = node.next_node)
   end
 end
